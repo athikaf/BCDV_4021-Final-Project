@@ -1,0 +1,33 @@
+.receipt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.receipt-div {
+  margin-top: 20px;
+  width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.receipt-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.receipt-info p {
+  margin: 8px 0;
+  color: #555;
+}
+
+.receipt-info p strong {
+  color: #333;
+}
