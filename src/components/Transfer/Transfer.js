@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 function Transfer() {
   const [amount, setAmount] = useState("");
   const [showReceipt, setShowReceipt] = useState(false);
-  const params=useParams();
+  const params = useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,23 +60,22 @@ function Transfer() {
         />
       )}
       <div className="footer">
-      <p>
-        Made with ❤️ by{" "}
-        <a
-          href="https://www.linkedin.com/in/athika-fatima-1a59121aa/"
-          className="key-styling"
-        >
-          Athika Fatima 
-        </a>
-      </p>
-      <p style={{marginTop: '19px', marginLeft:'10px'}}>
-        <a
-          href="https://www.linkedin.com/in/syed-wahaj-haider-2785a0184/"
-          className="key-styling"
-        >
-                Wahaj Haider
-        </a>
-      </p>
+        <p>
+          Made with ❤️ by{" "}
+          <a
+            href="https://www.linkedin.com/in/athika-fatima-1a59121aa/"
+            className="key-styling"
+          >
+            Athika Fatima
+          </a>{" "}
+          &{" "}
+          <a
+            href="https://www.linkedin.com/in/syed-wahaj-haider-2785a0184/"
+            className="key-styling"
+          >
+            Wahaj Haider
+          </a>
+        </p>
       </div>
     </div>
   );
