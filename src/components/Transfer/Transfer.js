@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Receipt from "./Receipt";
+import Receipt from "../Receipt/Receipt";
 import "./Transfer.css";
-import jsonData from "./data.json";
+import jsonData from "../data.json";
+import { useParams } from "react-router-dom";
 
 function Transfer() {
   const [amount, setAmount] = useState("");
   const [showReceipt, setShowReceipt] = useState(false);
+  const params=useParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ function Transfer() {
   // Render the component once the data is fetched
   return (
     <div className="body">
-      <h1>Transfer Project by 101502209</h1>
+      <h1>Transfer </h1>
       <div className="transfer-div">
         <h2>Transfer</h2>
         {jsonData && (
@@ -24,7 +26,7 @@ function Transfer() {
               <span className="key-styling">From:</span> {jsonData[0].sender}
             </p>
             <p>
-              <span className="key-styling">To:</span> {jsonData[0].receiver}
+              <span className="key-styling">To:</span> {params.id}
             </p>
 
             <form>
@@ -57,15 +59,25 @@ function Transfer() {
           gas={jsonData[0].gasUsed}
         />
       )}
+      <div className="footer">
       <p>
         Made with ❤️ by{" "}
         <a
           href="https://www.linkedin.com/in/athika-fatima-1a59121aa/"
           className="key-styling"
         >
-          Athika Fatima
+          Athika Fatima 
         </a>
       </p>
+      <p style={{marginTop: '19px', marginLeft:'10px'}}>
+        <a
+          href="https://www.linkedin.com/in/syed-wahaj-haider-2785a0184/"
+          className="key-styling"
+        >
+                Wahaj Haider
+        </a>
+      </p>
+      </div>
     </div>
   );
 }

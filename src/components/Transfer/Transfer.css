@@ -74,3 +74,9 @@ button:hover {
   color: #52ff00;
   font-weight: 600;
 }
+
+.footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
