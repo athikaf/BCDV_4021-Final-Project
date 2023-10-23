@@ -24,7 +24,8 @@ h1 {
   border: 1px dashed #ccc;
   padding: 20px;
   margin-top: 20px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 h2 {
@@ -75,8 +76,31 @@ button:hover {
   font-weight: 600;
 }
 
-.footer{
+.footer {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+  .body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .transfer-div {
+    margin-top: 10px;
+    padding: 10px;
+    max-width: 90%;
+  }
+  .transfer-div p {
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }

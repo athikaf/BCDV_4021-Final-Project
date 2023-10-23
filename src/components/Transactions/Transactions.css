@@ -6,8 +6,9 @@
 }
 
 .receipt-div {
+  width: 100%;
+  max-width: 800px;
   margin-top: 20px;
-  width: 800px;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 20px;
@@ -31,4 +32,27 @@ h2 {
 
 .receipt-div p strong {
   color: white;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 800px) {
+  .receipt-container {
+    padding: 10px;
+  }
+
+  .receipt-div {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .receipt-div p {
+    margin: 5px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
