@@ -6,7 +6,7 @@
 -> npm i<br />
 -> npm run start<br />
 
-### It contains a
+### It contains
 
 <ul>
 <li>Navbar</li>
