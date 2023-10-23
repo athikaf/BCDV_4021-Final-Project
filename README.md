@@ -1,12 +1,12 @@
 # Project Created by Athika Fatima and Wahaj Haider
 
-To start this project: <br />
+###To start this project: <br />
 -> git clone add_link<br />
 -> cd transaction-app<br />
 -> npm i<br />
 -> npm run start<br />
 
-It contains a
+###It contains a
 
 <ul>
 <li>Navbar</li>
