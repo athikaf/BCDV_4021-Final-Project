@@ -1,6 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const config = require("./../config");
+
+const url = config.mongourl;
+mongoose.connect(url);
+
+mongoose
+  .connect(url, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Mongoose connected to MongoDB successfully");
+  })
+  .catch((err) => console.log("Mongoose connection failed", err));
+
 const accountsSchema = new Schema(
   {
     address: {
@@ -21,44 +33,36 @@ var Accounts = mongoose.model("Accounts", accountsSchema);
 
 Accounts.insertMany([
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b1",
-    },
+    _id: "655d1e42ac1dc0220f7364b1",
     address: "0xAbCdEf0123456789abcdef0123456789abcdef012",
     balance: "1000.00",
   },
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b2",
-    },
+    _id: "655d1e42ac1dc0220f7364b2",
     address: "0x0123456789abcdef0123456789abcdef01234567",
     balance: "500.50",
   },
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b3",
-    },
+    _id: "655d1e42ac1dc0220f7364b3",
+
     address: "0x89abcdef0123456789abcdef0123456789abcdef0",
     balance: "750.25",
   },
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b4",
-    },
+    _id: "655d1e42ac1dc0220f7364b4",
+
     address: "0x3456789abcdef0123456789abcdef01234567890a",
     balance: "1200.75",
   },
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b5",
-    },
+    _id: "655d1e42ac1dc0220f7364b5",
+
     address: "0x6789abcdef0123456789abcdef01234567890123b",
     balance: "300.10",
   },
   {
-    _id: {
-      $oid: "655d1e42ac1dc0220f7364b6",
-    },
+    _id: "655d1e42ac1dc0220f7364b6",
+
     address: "0xabcdef0123456789abcdef0123456789abcdef456c",
     balance: "900.80",
   },

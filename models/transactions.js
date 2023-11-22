@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const config = require("./../config");
+
+const url = config.mongourl;
+mongoose.connect(url);
+
+mongoose
+  .connect(url, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Mongoose connected to MongoDB successfully");
+  })
+  .catch((err) => console.log("Mongoose connection failed", err));
 
 const transactionSchema = new Schema(
   {
@@ -43,6 +54,7 @@ Transactions.insertMany([
     destination: "0x0123456789abcdef0123456789abcdef01234567",
     status: "SUCCESS",
     gasUsed: 21000,
+    amount: 291,
     receiptHash: "0xabcdef0123456789abcdef0123456789abcdef456",
   },
   {
@@ -51,6 +63,7 @@ Transactions.insertMany([
     destination: "0x89abcdef0123456789abcdef0123456789abcdef0",
     status: "FAILURE",
     gasUsed: 40000,
+    amount: 827,
     receiptHash: "0x0123456789abcdef0123456789abcdef012345678",
   },
   {
@@ -59,6 +72,7 @@ Transactions.insertMany([
     destination: "0x3456789abcdef0123456789abcdef01234567890a",
     status: "PENDING",
     gasUsed: 30000,
+    amount: 1000,
     receiptHash: "0x89abcdef0123456789abcdef0123456789abcdef0",
   },
   {
@@ -69,16 +83,13 @@ Transactions.insertMany([
     gasUsed: 30000,
     amount: 650,
     receiptHash: "0x89abcdef0123456789abcdef0123456789abcdef0",
-    createdAt: "2023-11-21T22:02:16.269Z",
-    updatedAt: "2023-11-21T22:02:16.269Z",
-    __v: 0,
   },
 ])
   .then(() => {
-    console.log("Accounts inserted successfully");
+    console.log("Transactions inserted successfully");
   })
   .catch((err) => {
-    console.log("Error Loading Accounts Data", err);
+    console.log("Error Loading Transactions Data", err);
   });
 
 module.exports = Transactions;
