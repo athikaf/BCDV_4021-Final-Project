@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import "./Addresses.css";
@@ -34,7 +35,9 @@ function Addresses() {
         <div className="transfer-div">
           {addresses.map((item, index) => (
             <div className="address" key={index}>
-              <h2>{item}</h2>
+              <Link to={`/transfer/${item}`}>
+                <h2>{item}</h2>
+              </Link>
             </div>
           ))}
         </div>
