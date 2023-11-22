@@ -1,7 +1,49 @@
+import { React, useEffect, useState } from "react";
+import axios from "axios";
+
 import "./Wallet.css";
-import address from "../addresses.json";
 
 const Wallet = () => {
+  const [addresses, setAddresses] = useState([]);
+  const [balance, setBalance] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:1000/accounts")
+      .then((res) => {
+        setAddresses(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
+  const walletAddress = addresses[0];
+  console.log(walletAddress);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:1000/accounts/${walletAddress}`)
+      .then((res) => {
+        setBalance(res.data[0].balance);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, [walletAddress]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (addresses.length === 0) {
+    return <p>No addresses found.</p>;
+  }
   return (
     <>
       <div className="body">
@@ -9,10 +51,10 @@ const Wallet = () => {
         <div className="transfer-div">
           <div className="address">
             <h2>Address:</h2>
-            <h2>{address[0].nodeAddress}</h2>
+            <h2>{walletAddress}</h2>
           </div>
           <div className="address">
-            <h2>Balance:</h2> <h2>10000</h2> <h2>ETH</h2>
+            <h2>Balance:</h2> <h2>${balance}</h2> <h2>ETH</h2>
           </div>
         </div>
         <div className="footer">

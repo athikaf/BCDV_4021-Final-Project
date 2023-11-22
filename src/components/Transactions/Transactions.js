@@ -1,20 +1,45 @@
-import React from "react";
-import jsonData from "./../transactions.json";
+import { React, useEffect, useState } from "react";
+import axios from "axios";
+// import jsonData from "./../transactions.json";
 import "./Transactions.css";
 import Transaction from "./Transaction";
 
 function Transactions() {
+  const [transactionData, setTransactionData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:1000/transactions")
+      .then((res) => {
+        setTransactionData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (transactionData.length === 0) {
+    return <p>No Transactions found.</p>;
+  }
   return (
     <div className="receipt-container">
       <h1>Transaction History</h1>
-      {jsonData.map((e) => {
+      {transactionData.map((e) => {
         return (
           <Transaction
             receiptHash={e.receiptHash}
             status={e.status}
             time={e.createdAt}
-            from={e.sender}
-            to={e.receiver}
+            from={e.source}
+            to={e.destination}
             amount={e.amount}
             gas={e.gasUsed}
           />
