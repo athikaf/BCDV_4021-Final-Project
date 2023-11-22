@@ -48,13 +48,14 @@ const Wallet = () => {
     <>
       <div className="body">
         <h1>My Wallet</h1>
-        <div className="transfer-div">
+        <div className="wallet-div">
           <div className="address">
-            <h2>Address:</h2>
+            <h2 className="key-styling">Address:</h2>
             <h2>{walletAddress}</h2>
           </div>
           <div className="address">
-            <h2>Balance:</h2> <h2>${balance}</h2> <h2>ETH</h2>
+            <h2 className="key-styling">Balance:</h2> <h2>${balance}</h2>{" "}
+            <h2>ETH</h2>
           </div>
         </div>
         <div className="footer">

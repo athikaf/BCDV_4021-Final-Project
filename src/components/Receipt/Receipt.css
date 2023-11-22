@@ -24,6 +24,11 @@ h2 {
   flex-direction: column;
 }
 
+.receipt-div > div > p > span {
+  color: #52ff00;
+  font-weight: 600;
+}
+
 .receipt-info p {
   margin: 8px 0;
   color: #555;

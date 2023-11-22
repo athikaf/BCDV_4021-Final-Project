@@ -1,18 +1,44 @@
-import React, { useState } from "react";
+import { React, useEffect, useState } from "react";
+import axios from "axios";
 import Receipt from "../Receipt/Receipt";
 import "./Transfer.css";
-import jsonData from "../data.json";
+// import jsonData from "../data.json";
 import { useParams } from "react-router-dom";
 
 function Transfer() {
   const [amount, setAmount] = useState("");
+  const [transactionData, setTransactionData] = useState([]);
   const [showReceipt, setShowReceipt] = useState(false);
   const params = useParams();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:1000/transactions")
+      .then((res) => {
+        setTransactionData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (transactionData.length === 0) {
+    return <p>No Receipt found.</p>;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowReceipt(true);
   };
+
+  const transaction = transactionData[0];
 
   // Render the component once the data is fetched
   return (
@@ -20,13 +46,14 @@ function Transfer() {
       <h1>Transfer </h1>
       <div className="transfer-div">
         <h2>Transfer</h2>
-        {jsonData && (
+        {transactionData && (
           <div>
             <p>
-              <span className="key-styling">From:</span> {jsonData[0].sender}
+              <span className="key-styling">From:</span> {transaction.source}
             </p>
             <p>
-              <span className="key-styling">To:</span> {params.id}
+              <span className="key-styling">To:</span>
+              {params.id ? params.id : transaction.destination}
             </p>
 
             <form>
@@ -50,13 +77,12 @@ function Transfer() {
       </div>
       {showReceipt && amount !== "" && (
         <Receipt
-          txnHash={jsonData[0].txnID}
-          blockHash={jsonData[0].blockID}
-          bNo={jsonData[0].blockNumber}
-          from={jsonData[0].sender}
-          to={jsonData[0].receiver}
+          txnHash={transaction._id}
+          blockHash={transaction.receiptHash}
+          from={transaction.source}
+          to={transaction.destination}
           amount={amount}
-          gas={jsonData[0].gasUsed}
+          gas={transaction.gasUsed}
         />
       )}
       <div className="footer">
