@@ -1,10 +1,14 @@
 # Project Created by Athika Fatima and Wahaj Haider
 
 ### To start this project: <br />
+
 -> git clone add_link<br />
--> cd transaction-app<br />
+-> cd backendFinalGBC<br />
 -> npm i<br />
--> npm run start<br />
+-> npm run frontend<br />
+-> npm run backend
+
+NOTE: Please make sure your mongodb compass is connected and running smoothly before starting the app.
 
 ### It contains
 
